@@ -86,24 +86,6 @@ Paged.registerHandlers(RepeatingTableHeaders);
 ```
 
 ```{r, echo = FALSE}
-# dt <- fread('data/data.csv', encoding = 'UTF-8')
-# dt <- dt[, head(.SD, 5), by = 'PORT_NAME', .SDcols = ]
-# dt <- dt[, -c("CLASS_L1", "TYPE", "CR_HLD", "CR_M", "ER_M")]
-# 
-# dt[, `:=` (
-#   AV = round(AV / 1e7, 2),
-#   BUY_DATE = as.character(BUY_DATE),
-#   UGL_RATIO = GCAMCPUB::f_fmt_pct(UGL_RATIO),
-#   ER_HLD = GCAMCPUB::f_fmt_pct(ER_HLD),
-#   CR_Y = GCAMCPUB::f_fmt_pct(CR_Y),
-#   ER_Y = GCAMCPUB::f_fmt_pct(ER_Y)
-# )]
-# setnames(dt,
-#   c("PORT_NAME", "SEC_CODE", "SEC_NAME", "AV", "BUY_DATE", "UGL_RATIO", "ER_HLD", "CR_Y", "ER_Y"),
-#   c("账户名称", "证券代码", "证券名称", "账面价值（千万元）", "买入时间", "浮动盈亏/成本" ,
-#     "持有期累计超额", "年初至今累计", "年初至今超额")
-# )
-# # knitr::kable(dt, "html")
 gt::gt(Seatbelts)
 ```
 
