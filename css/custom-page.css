@@ -1,0 +1,69 @@
+@page {
+  size: A4; /* var(--pagedjs-width) doesn't work in browser when printing */
+  margin-top: 23mm;
+  margin-bottom: 15mm;
+  margin-left: 25mm;
+  margin-right: 25mm;
+}
+
+section {
+  break-before: right;
+}
+
+@page {
+  @bottom-center {
+    border-top: 1.5pt solid black;
+    height: 10mm;
+  }
+  
+  @bottom-left {
+    border-top: 1.5pt solid black;
+    content: "This is my footer";
+    padding-top: 2mm;
+    padding-bottom: 6mm;
+    font-size: 10.5pt;
+    height: 10mm;
+  }
+  
+  @bottom-right {
+    border-top: 1.5pt solid black;
+    font-size: 10.5pt;
+    padding-bottom: 6mm;
+    padding-top: 2mm;
+    content: "-" counter(page) "-";
+    height: 10mm;
+  }
+  
+  @top-left {
+    content: "This is my header";
+    font-family: "KaiTi";
+    font-size: 12pt;
+    border-bottom: 1.5pt solid black;
+    height: 20mm;
+    width: 30mm;
+    padding-bottom: 0mm;
+    padding-top: 6mm;
+  }
+
+  
+  @top-right {
+    content: " ";
+    background-image: url("./pagedown_logo.png");
+    background-size: 57%;
+    border-bottom: 2pt solid black;
+    height: 20mm;
+    background-repeat: no-repeat;
+    background-position: bottom right;
+    padding-bottom: 1pt;
+    background-color: #ffffff;
+  }
+}
+
+
+table tr, table thead {
+  break-inside: avoid;
+}
+
+table tr {
+    --pagedjs-repeat-header: all;
+}

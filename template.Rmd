@@ -1,0 +1,110 @@
+---
+title: "The report"
+author: "XXX"
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_paged:
+    toc: true
+    css: ["default", "css/custom-page.css", "css/custom.css"]
+    # change to true for a self-contained document, but it'll be a litte slower for Pandoc to render
+    self_contained: true
+# uncomment this line to produce HTML and PDF in RStudio:
+knit: pagedown::chrome_print
+---
+
+```{r setup, include=FALSE}
+library(data.table)
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+# Part I
+
+## Pagedown
+
+Paginate the HTML Output of R Markdown with CSS for Print. You only need a modern web browser (e.g., Google Chrome) to generate PDF. No need to install LaTeX to get beautiful PDFs.
+
+This R package stands on the shoulders of two giants to support typesetting with CSS for R Markdown documents: Paged.js and ReLaXed (we only borrowed some CSS from the ReLaXed repo and didn't really use the Node package).
+
+You may install this package from Github:
+
+## Page.js
+
+Paged.js is an open-source library to display paginated content in the browser and to generate print books using web technology.
+It contains a set of handlers for CSS transformations and fragmented layout which polyfill the Paged Media and Generated Content CSS modules, along with hooks to create new handlers for custom properties.
+The currently supported properties can be found on the wiki.
+A quick overview to getting started with Paged Media CSS and Paged.js is available on pagedmedia.org.
+
+# Part II
+
+## Pagedown
+
+Paginate the HTML Output of R Markdown with CSS for Print. You only need a modern web browser (e.g., Google Chrome) to generate PDF. No need to install LaTeX to get beautiful PDFs.
+
+This R package stands on the shoulders of two giants to support typesetting with CSS for R Markdown documents: Paged.js and ReLaXed (we only borrowed some CSS from the ReLaXed repo and didn't really use the Node package).
+
+You may install this package from Github:
+
+## Page.js
+
+Paged.js is an open-source library to display paginated content in the browser and to generate print books using web technology.
+It contains a set of handlers for CSS transformations and fragmented layout which polyfill the Paged Media and Generated Content CSS modules, along with hooks to create new handlers for custom properties.
+The currently supported properties can be found on the wiki.
+A quick overview to getting started with Paged Media CSS and Paged.js is available on pagedmedia.org.
+
+
+```{js, include = FALSE}
+// Repeat table headers
+// from https://gitlab.pagedmedia.org/tools/pagedjs/issues/84
+class RepeatingTableHeaders extends Paged.Handler {
+  constructor(chunker, polisher, caller) {
+    super(chunker, polisher, caller);
+  }
+  
+  afterPageLayout(pageElement, page, breakToken, chunker) {
+    // Find all split table elements
+    let tables = pageElement.querySelectorAll("table[data-split-from]");
+    
+    tables.forEach((table) => {
+      // Get the reference UUID of the node
+      let ref = table.dataset.ref;
+      // Find the node in the original source
+      let sourceTable = chunker.source.querySelector("[data-ref='" + ref + "']");
+      // Find if there is a header
+      let header = sourceTable.querySelector("tbody");
+      if (header) {
+        // Clone the header element
+        let clonedHeader = header.cloneNode(true);
+        // Insert the header at the start of the split table
+        table.insertBefore(clonedHeader, table.firstChild);
+      }
+    });
+    
+  }
+}
+Paged.registerHandlers(RepeatingTableHeaders);
+```
+
+```{r, echo = FALSE}
+# dt <- fread('data/data.csv', encoding = 'UTF-8')
+# dt <- dt[, head(.SD, 5), by = 'PORT_NAME', .SDcols = ]
+# dt <- dt[, -c("CLASS_L1", "TYPE", "CR_HLD", "CR_M", "ER_M")]
+# 
+# dt[, `:=` (
+#   AV = round(AV / 1e7, 2),
+#   BUY_DATE = as.character(BUY_DATE),
+#   UGL_RATIO = GCAMCPUB::f_fmt_pct(UGL_RATIO),
+#   ER_HLD = GCAMCPUB::f_fmt_pct(ER_HLD),
+#   CR_Y = GCAMCPUB::f_fmt_pct(CR_Y),
+#   ER_Y = GCAMCPUB::f_fmt_pct(ER_Y)
+# )]
+# setnames(dt,
+#   c("PORT_NAME", "SEC_CODE", "SEC_NAME", "AV", "BUY_DATE", "UGL_RATIO", "ER_HLD", "CR_Y", "ER_Y"),
+#   c("账户名称", "证券代码", "证券名称", "账面价值（千万元）", "买入时间", "浮动盈亏/成本" ,
+#     "持有期累计超额", "年初至今累计", "年初至今超额")
+# )
+# # knitr::kable(dt, "html")
+gt::gt(Seatbelts)
+```
+
+

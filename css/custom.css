@@ -1,0 +1,27 @@
+body,td,th {
+  font-family: "KaiTi";
+  font-size: 10.5pt;
+}
+
+table{
+  border-collapse:collapse;
+  width: 100%;
+  border-top: 1.3pt solid black;
+  border-bottom: 1.3pt solid black;
+}
+
+table thead tr, table thead th {
+    font-weight: bold;
+    border-bottom: 1pt solid black;
+    background-color: white;
+}
+
+
+tr td:first-of-type {
+  text-align: left;
+}
+
+tr td {
+  text-align: left;
+  background-color: white; 
+}
