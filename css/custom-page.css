@@ -48,7 +48,6 @@ section {
   
   @top-right {
     content: " ";
-    background-image: url("./pagedown_logo.png");
     background-size: 57%;
     border-bottom: 2pt solid black;
     height: 20mm;
